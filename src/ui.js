@@ -55,8 +55,6 @@ let ui = {
         ui.timer.innerHTML = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + value % 60;
     });
 
-
-
 ///BUTTON CLICKS
 
     ui.gyro.container.onclick = function() {
@@ -89,6 +87,7 @@ let ui = {
         return false;
     };
   
+
 addEventListener('error',(ev)=>{
     ipc.send('windowError',{mesg:ev.message,file:ev.filename,lineNumber:ev.lineno})
 })
