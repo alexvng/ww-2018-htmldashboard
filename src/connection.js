@@ -42,7 +42,6 @@ function onRobotConnection(connected) {
     setLogin();
   }
 }
-
 function setLogin() {
   // Add Enter key handler
   // Enable the input and the button
