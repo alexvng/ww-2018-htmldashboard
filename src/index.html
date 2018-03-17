@@ -20,7 +20,7 @@
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work.
         More explanation in that CSS rule. -->
     <div id="camera">
-        <img src="169.0.0255" width="100%" height="100%">
+        <img src="http://169.254.128.65:5800" width="100%" height="100%">
     </div>
     <!-- The main body of the dashboard, by default contains the gyro monitor and the robot diagram -->
 
@@ -63,19 +63,26 @@
             <div class="right" id="left-content-auto">
                 <label for="auto_select" class="orange"><h2>AutoSelect</h2></label>
                 <form id="auto_select">
-                    <p class="auto-label"><input type="radio" value="LLSC" name="auto_type"><container id="LLSC">Left to LeftScale</container></p>
-                    <p class="auto-label"><input type="radio" value="LLSW" name="auto_type"><container id="LLSW">Left to LeftSwitch</container></p>
-                    <p class="auto-label"><input type="radio" value="LRSC" name="auto_type"><container id="LRSC">Left to RightScale</container></p>
-                    <p class="auto-label"><input type="radio" value="LRSW" name="auto_type"><container id="LRSW">Left to RightSwitch</container></p>
-                    <p class="auto-label"><input type="radio" value="MLSC" name="auto_type"><container id="MLSC">Mid to LeftScale</container></p>
-                    <p class="auto-label"><input type="radio" value="MLSW" name="auto_type"><container id="MLSW">Mid to LeftSwitch</container></p>
-                    <p class="auto-label"><input type="radio" value="MRSC" name="auto_type"><container id="MRSC">Mid to RightScale</container></p>
-                    <p class="auto-label"><input type="radio" value="MRSW" name="auto_type"><container id="MRSW">Mid to RightSwitch</container></p>
-                    <p class="auto-label"><input type="radio" value="RLSC" name="auto_type"><container id="RLSC">Right to LeftScale</container></p>
-                    <p class="auto-label"><input type="radio" value="RLSW" name="auto_type"><container id="RLSW">Right to LeftSwitch</container></p>
-                    <p class="auto-label"><input type="radio" value="RRSC" name="auto_type"><container id="RRSC">Right to RightScale</container></p>
-                    <p class="auto-label"><input type="radio" value="RRSW" name="auto_type"><container id="RRSW">Right to RightSwitch</container></p>
-                    <p class="auto-label"><input type="radio" value="test" name="auto_type" checked="true"><container id="test">Test Autonomo</container></p>
+                    <p>
+                    <select id="startPos" onkeydown="IgnoreAlpha(event);">
+                      <option id="L" value="L">Left to</option>
+                      <option id="R" value="R">Right to</option>
+                      <option id="M" value="M">Mid to</option>
+                      <option id="T" value="T">Test</option>
+                      <option id="C" value="C">Cross</option>
+                    </select>
+                    <select id="target" onkeydown="IgnoreAlpha(event);">
+                      <option id="LSC" value="LC">LeftScale</option>
+                      <option id="LSW" value="LW">LeftSwitch</option>
+                      <option id="RSC" value="RC">RightScale</option>
+                      <option id="RSW" value="RW">RightSwitch</option>
+                      <option id="MSC" value="MC">MidScale</option>
+                      <option id="MSW" value="MW">MidSwitch</option>
+                      <option id="est" value="est">Test</option>
+                      <option id="ross" value="ross">CrossLIne</option>
+                  </select>
+                    </p>    
+                    <br>      
                     <input type="button" id="auto_button" value="SET AUTO">
                 </form>
             </div> 

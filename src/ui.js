@@ -72,23 +72,36 @@ let ui = {
     };
 
     ui.auto.button.onclick = function(){
-
-        var selectedAuto;
-        var radios = document.getElementsByName('auto_type');
-        for (var i = 0, length = radios.length; i < length; i++){
-            if(radios[i].checked){
-                selectedAuto = radios[i].value;
-                break;
-            }
-        }
+        var e = document.getElementById("startPos");
+        var startPosition = e.options[e.selectedIndex];
+        e = document.getElementById("target");
+        var targetPosition = e.options[e.selectedIndex];
+        var selectedAuto = startPosition.value + targetPosition.value;
 
         console.log(selectedAuto);
-        ui.auto.auto_display.innerHTML = document.getElementById(selectedAuto).innerHTML;
+        ui.auto.auto_display.innerHTML = startPosition.text + " " + targetPosition.text;
         NetworkTables.putValue('SmartDashboard/auto_selected', selectedAuto);
 
         return false;
     };
   
+
+
+
+//MISCELALLNEOUS
+function IgnoreAlpha(e)
+{
+    if (!e)
+    {
+        e = window.event ;
+    }
+    if (e.keyCode >= 30 && e.keyCode <= 90) // A to Z
+    {
+        e.returnValue=false;
+        e.cancel = true;
+    }
+}
+
 addEventListener('error',(ev)=>{
     ipc.send('windowError',{mesg:ev.message,file:ev.filename,lineNumber:ev.lineno})
 })

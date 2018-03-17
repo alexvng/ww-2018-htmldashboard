@@ -173,3 +173,8 @@ input[type="textarea"]{
     background-color:black;
     padding:5px;
 }
+select{
+      background-color:black;
+      font-size:11px;
+      color:#fff;  
+}
