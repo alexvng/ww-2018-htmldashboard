@@ -45,7 +45,7 @@ let ui = {
     NetworkTables.addKeyListener('/SmartDashboard/angle', updateGyro);
 
     let updateShtrSpeed = (key, value) => {
-        ui.shooter.speedtxt.innerHTML = value;
+        ui.shooter.speedtxt.innerHTML = value + " m/s";
     };
     NetworkTables.addKeyListener('/SmartDashboard/speed', updateShtrSpeed);
 
