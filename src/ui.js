@@ -19,13 +19,13 @@ let ui = {
     },
     shooter:{
         speedtxt: document.getElementById('sht_spd_txt'),
-        height_display: document.getElementById('display_shtr_height');
+        height_display: document.getElementById('display_shtr_height')
     },
     pid:{
         p_display: document.getElementById('Ptxt'),
         i_display: document.getElementById('Itxt'),
         d_display: document.getElementById('Dtxt')
-    }
+    },
     boolean:{
         cube: document.getElementById('cubeLoaded'),
         hood: document.getElementById('hoodUp'),
@@ -46,7 +46,7 @@ let ui = {
         ui.gyro.arm.style.transform = `rotate(${ui.gyro.visualVal}deg)`;
         ui.gyro.number.innerHTML = ui.gyro.visualVal + 'º';
     };
-    NetworkTables.addKeyListener('/SmartDashboard/angle', updateGyro);
+    NetworkTables.addKeyListener('/SmartDashboard/subsystem-drivetrain/angle', updateGyro);
 
  //Shooter Speed
     let updateShtrSpeed = (key, value) => {
@@ -65,24 +65,24 @@ let ui = {
     let updateShtrHeight = (key, value) =>{
         ui.shooter.height_display.innerHTML = value;
     }
-    NetworkTables.addKeyListener('/SmartDashboard/target-selected', updateShtrHeight);
+    NetworkTables.addKeyListener('/SmartDashboard/subsystem-shooter/target-selected', updateShtrHeight);
 
 //Booleans
     //cube
     let updateCubeLoaded = (key, value) =>{
         ui.boolean.cube.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
     }
-    NetworkTables.addKeyListener('/SmartDashboard/cube-loaded', updateCubeLoaded);
+    NetworkTables.addKeyListener('/SmartDashboard/subsystem-feed/cube-loaded', updateCubeLoaded);
     //Hood 
     let updateHoodUp = (key, value) =>{
         ui.boolean.hood.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
     }
-    NetworkTables.addKeyListener('/SmartDashboard/hood-up', updateHoodUp);
+    NetworkTables.addKeyListener('/SmartDashboard/subsystem-pneumatics/hood-up', updateHoodUp);
     //PickUp 
     let updatePickUpOut = (key, value)=>{
         ui.boolean.pickup.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
     }
-    NetworkTables.addKeyListener('/SmartDashboard/pickup-out', updatePickUpOut);
+    NetworkTables.addKeyListener('/SmartDashboard/subsystem-pneumatics/pickup-out', updatePickUpOut);
 ///BUTTON CLICKS
 
 //Gyro Re-Calibratae
