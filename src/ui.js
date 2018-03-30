@@ -19,13 +19,17 @@ let ui = {
     },
     shooter:{
         speedtxt: document.getElementById('sht_spd_txt'),
-        goalSpd: document.getElementById('goalSpeed')
+        height_display: document.getElementById('display_shtr_height');
     },
     pid:{
         p_display: document.getElementById('Ptxt'),
         i_display: document.getElementById('Itxt'),
         d_display: document.getElementById('Dtxt')
-
+    }
+    boolean:{
+        cube: document.getElementById('cubeLoaded'),
+        hood: document.getElementById('hoodUp'),
+        pickup: document.getElementById('pickupOut')
     }
 };
 
@@ -44,33 +48,52 @@ let ui = {
     };
     NetworkTables.addKeyListener('/SmartDashboard/angle', updateGyro);
 
+ //Shooter Speed
     let updateShtrSpeed = (key, value) => {
         ui.shooter.speedtxt.innerHTML = value + " m/s";
     };
     NetworkTables.addKeyListener('/SmartDashboard/speed', updateShtrSpeed);
 
+//Match Time
     NetworkTables.addKeyListener('/robot/time', (key, value) => {
         // This is an example of how a dashboard could display the remaining time in a match.
         // We assume here that value is an integer representing the number of seconds left.
         ui.timer.innerHTML = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + value % 60;
     });
 
+//Shooter Height 
+    let updateShtrHeight = (key, value) =>{
+        ui.shooter.height_display.innerHTML = value;
+    }
+    NetworkTables.addKeyListener('/SmartDashboard/target-selected', updateShtrHeight);
 
-
+//Booleans
+    //cube
+    let updateCubeLoaded = (key, value) =>{
+        ui.boolean.cube.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
+    }
+    NetworkTables.addKeyListener('/SmartDashboard/cube-loaded', updateCubeLoaded);
+    //Hood 
+    let updateHoodUp = (key, value) =>{
+        ui.boolean.hood.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
+    }
+    NetworkTables.addKeyListener('/SmartDashboard/hood-up', updateHoodUp);
+    //PickUp 
+    let updatePickUpOut = (key, value)=>{
+        ui.boolean.pickup.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
+    }
+    NetworkTables.addKeyListener('/SmartDashboard/pickup-out', updatePickUpOut);
 ///BUTTON CLICKS
 
+//Gyro Re-Calibratae
     ui.gyro.container.onclick = function() {
         // Store previous gyro val, will now be subtracted from val for callibration
         ui.gyro.offset = ui.gyro.val;
         // Trigger the gyro to recalculate value.
         updateGyro('/SmartDashboard/drive/navx/yaw', ui.gyro.val);
     };
-    ui.shooter.goalSpd.onchange = function(){
-       NetworkTables.putValue('/SmartDashboard/targetSpeed', ui.shooter.goalSpd.value);
-       document.getElementById('desiredSpeedTxt').innerHTML = ui.shooter.goalSpd.value;
 
-    };
-
+//Set Auto
     ui.auto.button.onclick = function(){
         var e = document.getElementById("startPos");
         var startPosition = e.options[e.selectedIndex];

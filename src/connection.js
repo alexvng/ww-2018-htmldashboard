@@ -50,7 +50,7 @@ function setLogin() {
   // Add the default address and select xxxx
   address.value = 'roborio-2478-frc.local';
   address.focus();
-  address.setSelectionRange(8, 12);
+  address.setSelectionRange(0, 21);
 }
 // On click try to connect and disable the input and the button
 connect.onclick = () => {

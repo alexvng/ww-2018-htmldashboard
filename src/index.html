@@ -33,10 +33,10 @@
             <text id="gyro-number" x="90" y="115">0º</text>
         </svg>
 
-
-        <h3 class="blue">Shooter Speed Reading: <container class="white" id="sht_spd_txt">unknown</container></h3>          
-        <h3 class="blue">Drive Motor Speed Reading: <container class="white" id="drv_spd_txt">unknown</container></h3>
-        <h3 class="blue">FMS: <container class="white" id="fms_display">N/A</container></h3>
+        <h3 class="red">Shooter Speed: <container class="white" id="sht_spd_txt">unknown</container></h3>
+        <h3 class="red">Shooter Height: <container class="white" id="display_shtr_height">unknown</container></h3>        
+        <h3 class="green">Drive Motor Speed Reading: <container class="white" id="drv_spd_txt">unknown</container></h3>
+        <h3 class="purple">FMS: <container class="white" id="fms_display">N/A</container></h3>
 
         <div class="pid">
             <br>
@@ -47,17 +47,11 @@
     </article>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
-
         <!-- Autonomous selector -->
         <div>
             <div>
                 <h3 class="blue">Selected Auto Mode:</h3> <p id="auto_display">No auto mode selected</p>
             </div>
-        </div>
-
-        <div>
-            <h3 class="blue">Desired Shooter Speed</h3>
-            <p class = white><input id="goalSpeed" class=" blue" type="textarea" placeholder="770" value="700">m/s</p>
         </div>
         <div>
             <div class="right" id="left-content-auto">
@@ -68,18 +62,15 @@
                       <option id="L" value="L">Left to</option>
                       <option id="R" value="R">Right to</option>
                       <option id="M" value="M">Mid to</option>
-                      <option id="T" value="T">Test</option>
-                      <option id="C" value="C">Cross</option>
                     </select>
                     <select id="target" onkeydown="IgnoreAlpha(event);">
-                      <option id="LSC" value="LC">LeftScale</option>
-                      <option id="LSW" value="LW">LeftSwitch</option>
-                      <option id="RSC" value="RC">RightScale</option>
-                      <option id="RSW" value="RW">RightSwitch</option>
-                      <option id="MSC" value="MC">MidScale</option>
-                      <option id="MSW" value="MW">MidSwitch</option>
-                      <option id="est" value="est">Test</option>
-                      <option id="ross" value="ross">CrossLIne</option>
+                      <option id="LSC" value="LSC">LeftScale</option>
+                      <option id="LSW" value="LSW">LeftSwitch</option>
+                      <option id="RSC" value="RSC">RightScale</option>
+                      <option id="RSW" value="RSW">RightSwitch</option>
+                      <option id="MSC" value="MSC">MidScale</option>
+                      <option id="MSW" value="MSW">MidSwitch</option>
+                      <option id="cross" value="cross">CrossLIne</option>
                   </select>
                     </p>    
                     <br>      
@@ -87,10 +78,14 @@
                 </form>
             </div> 
         </div>
+        <div>
+            <h3 class="orange">Booleans</h3>
+            <p>Cube Loaded? <div id="cubeLoaded" class="boolean" style="height:20px; background-color:red;"></div></p>
+            <p>Hood Up? <div id="hoodUp" class="boolean" style="height:20px; background-color:red;"></div></p>
+            <p>Pick-Up Out? <div id="pickupOut" class="boolean" style="height:20px; background-color:red;"></div></p>
+        </div>
     </aside>
-
-
-    <div id="login">
+ <div id="login">
         <input id="connect-address" type="text" value="localhost" disabled>
         <button id="connect" disabled>Connecting</button>
     </div>
