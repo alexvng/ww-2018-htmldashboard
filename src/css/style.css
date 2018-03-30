@@ -169,6 +169,15 @@ body.login #login {
 .blue{
     color:#AEC0F1;
 }
+.green{
+    color:green;
+}
+.purple{
+    color:purple;
+}
+.red{
+    color:red;
+}
 input[type="textarea"]{
     background-color:black;
     padding:5px;
