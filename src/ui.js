@@ -18,13 +18,7 @@ let ui = {
         display: document.getElementById('fms_display')
     },
     shooter:{
-        speedtxt: document.getElementById('sht_spd_txt'),
-        height_display: document.getElementById('display_shtr_height')
-    },
-    pid:{
-        p_display: document.getElementById('Ptxt'),
-        i_display: document.getElementById('Itxt'),
-        d_display: document.getElementById('Dtxt')
+        speedtxt: document.getElementById('sht_spd_txt')
     },
     boolean:{
         cube: document.getElementById('cubeLoaded'),
@@ -46,13 +40,13 @@ let ui = {
         ui.gyro.arm.style.transform = `rotate(${ui.gyro.visualVal}deg)`;
         ui.gyro.number.innerHTML = ui.gyro.visualVal + 'º';
     };
-    NetworkTables.addKeyListener('/SmartDashboard/subsystem-drivetrain/angle', updateGyro);
+    NetworkTables.addKeyListener('/SmartDashboard/DrivetrainSubsystem/angle', updateGyro);
 
  //Shooter Speed
     let updateShtrSpeed = (key, value) => {
-        ui.shooter.speedtxt.innerHTML = value + " m/s";
+        ui.shooter.speedtxt.innerHTML = value + " RPM";
     };
-    NetworkTables.addKeyListener('/SmartDashboard/speed', updateShtrSpeed);
+    NetworkTables.addKeyListener('/SmartDashboard/ShooterSubsystem/speed', updateShtrSpeed);
 
 //Match Time
     NetworkTables.addKeyListener('/robot/time', (key, value) => {
@@ -61,37 +55,23 @@ let ui = {
         ui.timer.innerHTML = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + value % 60;
     });
 
-//Shooter Height 
-    let updateShtrHeight = (key, value) =>{
-        ui.shooter.height_display.innerHTML = value;
-    }
-    NetworkTables.addKeyListener('/SmartDashboard/subsystem-shooter/target-selected', updateShtrHeight);
-
 //Booleans
     //cube
     let updateCubeLoaded = (key, value) =>{
         ui.boolean.cube.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
     }
-    NetworkTables.addKeyListener('/SmartDashboard/subsystem-feed/cube-loaded', updateCubeLoaded);
+    NetworkTables.addKeyListener('/SmartDashboard/FeedSubsystem/cube-loaded', updateCubeLoaded);
     //Hood 
     let updateHoodUp = (key, value) =>{
         ui.boolean.hood.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
     }
-    NetworkTables.addKeyListener('/SmartDashboard/subsystem-pneumatics/hood-up', updateHoodUp);
+    NetworkTables.addKeyListener('/SmartDashboard/PneumaticSubsystem/hood-up', updateHoodUp);
     //PickUp 
     let updatePickUpOut = (key, value)=>{
         ui.boolean.pickup.style = (value == true)? "height:20px; background-color:green" : "height:20px; background-color:red";
     }
-    NetworkTables.addKeyListener('/SmartDashboard/subsystem-pneumatics/pickup-out', updatePickUpOut);
+    NetworkTables.addKeyListener('/SmartDashboard/PneumaticSubsystem/pickup-out', updatePickUpOut);
 ///BUTTON CLICKS
-
-//Gyro Re-Calibratae
-    ui.gyro.container.onclick = function() {
-        // Store previous gyro val, will now be subtracted from val for callibration
-        ui.gyro.offset = ui.gyro.val;
-        // Trigger the gyro to recalculate value.
-        updateGyro('/SmartDashboard/drive/navx/yaw', ui.gyro.val);
-    };
 
 //Set Auto
     ui.auto.button.onclick = function(){
