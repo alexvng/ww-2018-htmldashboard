@@ -34,7 +34,16 @@
         </svg>
 
         <h3 class="red">Shooter Speed: <container class="white" id="sht_spd_txt">unknown</container></h3>
+        <h3 class="red">Shooter Height: <container class="white" id="display_shtr_height">unknown</container></h3>        
+        <h3 class="green">Drive Motor Speed Reading: <container class="white" id="drv_spd_txt">unknown</container></h3>
         <h3 class="purple">FMS: <container class="white" id="fms_display">N/A</container></h3>
+
+        <div class="pid">
+            <br>
+            <h3 class="orange">
+                P: <container class="white" id="Ptxt">N/A</container> I: <container class="white" id="Itxt">N/A</container> D: <container class="white" id="Dtxt">N/A</container>
+            </h3>
+        </div>
     </article>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
@@ -74,6 +83,7 @@
             <p>Cube Loaded? <div id="cubeLoaded" class="boolean" style="height:20px; background-color:red;"></div></p>
             <p>Hood Up? <div id="hoodUp" class="boolean" style="height:20px; background-color:red;"></div></p>
             <p>Pick-Up Out? <div id="pickupOut" class="boolean" style="height:20px; background-color:red;"></div></p>
+            <p>Drive Inverted? <div id="driveInverted" class="boolean" style="height:20px; background-color:red;"></div></p>
         </div>
     </aside>
  <div id="login">
