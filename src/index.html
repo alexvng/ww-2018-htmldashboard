@@ -33,10 +33,12 @@
             <text id="gyro-number" x="90" y="115">0º</text>
         </svg>
 
+    <div id="statsBox">
         <h3 class="red">Shooter Speed: <container class="white" id="sht_spd_txt">unknown</container></h3>
         <h3 class="red">Shooter Height: <container class="white" id="display_shtr_height">unknown</container></h3>        
         <h3 class="green">Drive Motor Speed Reading: <container class="white" id="drv_spd_txt">unknown</container></h3>
         <h3 class="purple">FMS: <container class="white" id="fms_display">N/A</container></h3>
+    </div>
 
         <div class="pid">
             <br>
@@ -48,12 +50,12 @@
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
         <!-- Autonomous selector -->
-        <div>
+        <div id="autoSelectedBox">
             <div>
                 <h3 class="blue">Selected Auto Mode:</h3> <p id="auto_display">No auto mode selected</p>
             </div>
         </div>
-        <div>
+        <div id="autoSelectBox">
             <div class="right" id="left-content-auto">
                 <label for="auto_select" class="orange"><h2>AutoSelect</h2></label>
                 <form id="auto_select">
